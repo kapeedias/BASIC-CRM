@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Prepare and execute the SQL query to retrieve user data from the database
-        $stmt = $conn->prepare("SELECT * FROM crm_users WHERE username=:username");
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username=:username");
         $stmt->bindParam(':username', $username);
         $stmt->execute();
 
@@ -30,9 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verify the password using the stored salt
             $hashedPassword = hash('sha256', $password . $row['salt']);
 
-            if ($hashedPassword === $row['password']) {
+            // Compare the hashed password with the stored hashed password
+            if (hash_equals($hashedPassword, $row['password'])) {
                 // Password is correct, set session variables
-                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['username'] = $row['username'];
 
                 // Redirect to the myaccount.php page
