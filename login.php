@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hashedPassword = hash('sha256', $password . $row['salt']);
 
             // Compare the hashed password with the stored hashed password
-            if (hash_equals($hashedPassword, $row['password'])) {
+            if (hash_equals($hashedPassword, $row['password_hash'])) {
                 // Password is correct, set session variables
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['username'] = $row['username'];
