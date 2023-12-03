@@ -1,6 +1,6 @@
 <?php
 // Database configuration
-$servername = "root";
+$servername = "localost";
 $username = "cms_admin";
 $password = "cQ&cH_k)Xybr";
 $dbname = "cms_livewd";
