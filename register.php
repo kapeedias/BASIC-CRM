@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Check if a user with the same email already exists
-        $stmt_check = $conn->prepare("SELECT user_id FROM crm_users WHERE email = :email");
+        $stmt_check = $conn->prepare("SELECT id FROM crm_users WHERE email = :email");
         $stmt_check->bindParam(':email', $email);
         $stmt_check->execute();
 
